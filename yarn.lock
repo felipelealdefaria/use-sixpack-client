@@ -9379,6 +9379,11 @@ sisteransi@^1.0.4:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
 
+sixpack-client@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/sixpack-client/-/sixpack-client-2.1.0.tgz#61adff224af0e84c50f35ecb31ad7e45d1a91480"
+  integrity sha1-Ya3/Ikrw6ExQ817LMa1+RdGpFIA=
+
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
