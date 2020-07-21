@@ -2,9 +2,9 @@
 import React from 'react';
 import SixpackClient from 'sixpack-client';
 
-export default (name, variations, traffic) => {
+export default (name, variations, traffic, baseURL) => {
   const session = new SixpackClient.Session({
-    base_url: process.env.REACT_APP_SIXPACK_BASE_URL,
+    base_url: baseURL || process.env.REACT_APP_SIXPACK_BASE_URL,
     timeout: 4000,
   });
 
@@ -17,9 +17,9 @@ export default (name, variations, traffic) => {
   React.useEffect(() => {
     session.participate(name, variations, traffic, (err, res) => {
       if (!err) {
-        const convert = () =>
+        const convert = (kpi) =>
           new Promise((resolve, reject) => {
-            session.convert(name, function (err) {
+            session.convert(name, kpi, function (err) {
               if (err) {
                 console.error(err);
                 return reject();
@@ -32,6 +32,8 @@ export default (name, variations, traffic) => {
           variation: res.alternative.name,
           convert,
         });
+      } else {
+        console.error('err', err)
       }
     });
   }, []);
