@@ -1,19 +1,36 @@
 {
   "name": "use-sixpack-client",
   "version": "0.1.0",
-  "private": true,
+  "description": "Hook integrated with lib sixpack-client, to perform A / B testing.",
+  "author": "Luís Felipe Leal de Faria <felipelealdefaria@gmail.com> (https://github.com/felipelealdefaria)",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/felipelealdefaria/use-sixpack-client"
+  },
   "dependencies": {
+    "sixpack-client": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "react-scripts": "3.4.1"
+  },
+  "peerDependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "sixpack-client": "^2.1.0"
+    "react-dom": "^16.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
