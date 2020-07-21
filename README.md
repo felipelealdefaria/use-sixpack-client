@@ -30,9 +30,15 @@ import ButtonOne from './components/ButtonOne'
 import ButtonTwo from './components/ButtonTwo'
 
 export default function App() {
-  // useSixPack(name: string, variations: string[], traffic: float)
-  const sixpack = useSixPack('buttonTest', ['testA', 'testB'], 0.5)
-  const Button = sixpack && sixpack.variation === 'testA' ? ButtonOne  : ButtonTwo;
+  // useSixPack(name: string, variations: string[], traffic: float, baseURL(optional): string)
+  const sixpack = useSixPack('button-test', ['test-a', 'test-b'], 0.5)
+  
+  const Button = sixpack && sixpack.variation === 'test-a' ? ButtonOne  : ButtonTwo;
+
+  return (
+    <div onClick={() => sixpack.convert('click')}>
+      <Button />
+    </div>
 
   return (
     <Button />
