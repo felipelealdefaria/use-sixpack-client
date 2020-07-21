@@ -1,26 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import useSixPack from './libs/hooks/useSixPack'
+import ButtonOne from './libs/components/ButtonOne'
+import ButtonTwo from './libs/components/ButtonTwo'
 
-function App() {
+export default function App() {
+  const sixpack = useSixPack('buttonTest', ['testA', 'testB'], {})
+  const Button = sixpack && sixpack.variation === 'testA' ? ButtonOne  : ButtonTwo;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Button />
+  )
 }
-
-export default App;
