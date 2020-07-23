@@ -32,16 +32,21 @@ import ButtonTwo from './components/ButtonTwo'
 export default function App() {
   // useSixPack(name: string, variations: string[], traffic: float, baseURL(optional): string)
   const sixpack = useSixPack('button-test', ['test-a', 'test-b'], 0.5)
-  
   const Button = sixpack && sixpack.variation === 'test-a' ? ButtonOne  : ButtonTwo;
 
-  return (
-    <div onClick={() => sixpack.convert('click')}>
-      <Button />
-    </div>
+  React.useEffect(() => {
+    if(sixpack.ready) {
+      sixpack.convert('button-page-loaded')};
+  }, [sixpack])
 
   return (
-    <Button />
+    <div style={{ width: '100%', backgroundColor: 'red' }} onClick={() => sixpack.convert('column-click')}>
+      <Button convert={() => sixpack.convert('button-click')} />
+    </div>
   )
 }
 ```
+
+## Forcing variant
+
+Just create a cookie named **force-*test_name***

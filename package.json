@@ -1,19 +1,42 @@
 {
   "name": "use-sixpack-client",
   "version": "0.1.0",
-  "private": true,
+  "description": "Hook integrated with lib sixpack-client, to perform A / B testing.",
+  "author": "Resmed-Growth",
+  "contributors": [
+    "Luís Felipe Leal de Faria <felipelealdefaria@gmail.com> (https://github.com/felipelealdefaria)",
+    "Co-authored-by: Alan Gabriel <contatoalangabriel@gmail.com>",
+    "Co-authored-by: Luciano Nobre Moreira <lucianonobremoreira@gmail.com>",
+    "Co-authored-by: Tiago da Hora <tiagojvt@gmail.com>"
+  ],
+  "main": "dist/useSixPack.js",
+  "module": "dist/useSixPack.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/felipelealdefaria/use-sixpack-client"
+  },
   "dependencies": {
+    "sixpack-client": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "babel-preset-env": "^1.7.0",
+    "react-scripts": "3.4.1"
+  },
+  "peerDependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "sixpack-client": "^2.1.0"
+    "react-dom": "^16.13.1"
   },
   "scripts": {
+    "build": "rm -rf dist && babel src/libs/hooks -d dist",
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
