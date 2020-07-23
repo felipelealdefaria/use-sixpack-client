@@ -26,7 +26,11 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-exports.default = function (name, variations, traffic, baseURL) {
+exports.default = function (name, variations, _ref) {
+  var traffic = _ref.traffic,
+      timeout = _ref.timeout,
+      baseURL = _ref.baseURL;
+
   var _React$useState = _react2.default.useState({
     ready: false,
     variation: null,
@@ -38,13 +42,13 @@ exports.default = function (name, variations, traffic, baseURL) {
 
   if (typeof window === 'undefined') return data;
   var session = new _sixpackClient2.default.Session({
-    base_url: baseURL || process.env.REACT_APP_SIXPACK_BASE_URL,
-    timeout: 4000
+    base_url: baseURL || null,
+    timeout: timeout || 4000
   });
   var force = getForcedVariant("force-" + name);
 
   _react2.default.useEffect(function () {
-    session.participate(name, variations, traffic, force, function (err, res) {
+    session.participate(name, variations, traffic || 0.5, force, function (err, res) {
       if (!err) {
         var convert = function convert(kpi) {
           return new Promise(function (resolve, reject) {

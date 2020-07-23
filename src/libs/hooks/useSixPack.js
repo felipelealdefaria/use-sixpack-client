@@ -2,7 +2,7 @@
 import React from 'react';
 import SixpackClient from 'sixpack-client';
 
-export default (name, variations, traffic, baseURL) => {
+export default (name, variations, { traffic, timeout, baseURL }) => {
   const [data, setData] = React.useState({
     ready: false,
     variation: null,
@@ -12,14 +12,14 @@ export default (name, variations, traffic, baseURL) => {
   if (typeof window === 'undefined') return data;
   
   const session = new SixpackClient.Session({
-    base_url: baseURL || process.env.REACT_APP_SIXPACK_BASE_URL,
-    timeout: 4000,
+    base_url: baseURL || null,
+    timeout: timeout || 4000,
   });
 
   const force = getForcedVariant(`force-${name}`);
 
   React.useEffect(() => {
-    session.participate(name, variations, traffic, force, (err, res) => {
+    session.participate(name, variations, traffic || 0.5, force, (err, res) => {
       if (!err) {
         const convert = (kpi) =>
           new Promise((resolve, reject) => {

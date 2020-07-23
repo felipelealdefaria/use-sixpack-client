@@ -4,8 +4,13 @@ import ButtonOne from './libs/components/ButtonOne'
 import ButtonTwo from './libs/components/ButtonTwo'
 
 export default function App() {
-  const sixpack = useSixPack('button-test', ['test-a', 'test-b'], 0.5)
-  const Button = sixpack && sixpack.variation === 'test-a' ? ButtonOne  : ButtonTwo;
+  const sixpack = useSixPack('button-test-a', ['test-a', 'test-b'], { 
+    traffic: 0.6,
+    timeout: 3000, 
+    baseURL: 'http://127.0.0.1:5000'
+  })
+
+  const Button = sixpack && sixpack.variation === 'test-a' ? ButtonOne  : ButtonTwo
 
   React.useEffect(() => {
     if(sixpack.ready) {
