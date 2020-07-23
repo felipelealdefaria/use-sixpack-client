@@ -4,25 +4,37 @@ Browser client library [sixpack-js](https://github.com/sixpack/sixpack-js) A/B t
 
 ### Installation
 
-``` yarn
+```bash
 yarn add use-sixpack-client
-```
-
-``` npm
+# or
 npm i use-sixpack-client
 ```
 
 ### Usage
 
-To start a session with sixpack, in your .env file, create environment variables with the names ***REACT_APP_SIXPACK_BASE_URL***:
+``` useSixPack
+useSixPack(name: string, variations: string[], options: Object)
 
-``` .env
-// your domain to analyze the sixpack dashboard
-REACT_APP_SIXPACK_BASE_URL=http://127.0.0.1:5000
+# options: {
+#  traffic: float // => default: 0.5,
+#  timeout: number // => default: 4000,
+#  baseURL: string // => default: null,
+# }
+```
+
+Hook return:
+
+``` return
+  {
+    ready: boolean: => true || false,
+    variation: string: => name of the variation drawn || null,
+    convert: function: session.convert || () => {},
+  }
 ```
 
 And in your file you want to run the test:
 
+Basic example:
 ``` basic example
 import React from 'react'
 import useSixPack from 'use-sixpack-client'
@@ -30,8 +42,12 @@ import ButtonOne from './components/ButtonOne'
 import ButtonTwo from './components/ButtonTwo'
 
 export default function App() {
-  // useSixPack(name: string, variations: string[], traffic: float, baseURL(optional): string)
-  const sixpack = useSixPack('button-test', ['test-a', 'test-b'], 0.5)
+  const sixpack = useSixPack('button-test', ['test-a', 'test-b'], {
+    traffic: 0.6,
+    timeout: 3000,
+    baseURL: 'http://127.0.0.1:5000'
+  });
+  
   const Button = sixpack && sixpack.variation === 'test-a' ? ButtonOne  : ButtonTwo;
 
   React.useEffect(() => {
@@ -40,7 +56,7 @@ export default function App() {
   }, [sixpack])
 
   return (
-    <div style={{ width: '100%', backgroundColor: 'red' }} onClick={() => sixpack.convert('column-click')}>
+    <div onClick={() => sixpack.convert('column-click')}>
       <Button convert={() => sixpack.convert('button-click')} />
     </div>
   )
