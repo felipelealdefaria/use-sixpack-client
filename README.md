@@ -1,4 +1,4 @@
-# Hook useSixPack for Test A/B
+# Hook useSixPack for Test A/B [depreciated]
 
 Browser client library [sixpack-js](https://github.com/sixpack/sixpack-js) A/B testing framework.
 
